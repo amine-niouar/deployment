@@ -8,14 +8,18 @@ spec:
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
     chart: kube-prometheus-stack
-    targetRevision: 61.3.0 # Stable community version lock
+    targetRevision: 61.3.0
     helm:
-      # Cost-Optimized values configuration for a demonstration cluster
       values: |
         prometheus:
           prometheusSpec:
             retention: 2d
             retentionSize: 2GiB
+            
+            # CRITICAL FIX: Tell the operator to use ephemeral emptyDir storage
+            storageSpec:
+              emptyDir: {}
+              
             resources:
               requests:
                 cpu: 100m
