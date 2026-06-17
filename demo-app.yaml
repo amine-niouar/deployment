@@ -5,7 +5,7 @@ metadata:
   labels:
     app: nginx
 spec:
-  replicas: 2 # ArgoCD will ensure exactly 2 pods are running
+  replicas: 25
   selector:
     matchLabels:
       app: nginx
