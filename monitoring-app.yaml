@@ -15,11 +15,8 @@ spec:
           prometheusSpec:
             retention: 2d
             retentionSize: 2GiB
-            
-            # CRITICAL FIX: Tell the operator to use ephemeral emptyDir storage
             storageSpec:
               emptyDir: {}
-              
             resources:
               requests:
                 cpu: 100m
@@ -51,3 +48,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - ServerSideApply=true # CRITICAL FIX: Bypasses the 256kb CRD size limit
