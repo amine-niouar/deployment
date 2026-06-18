@@ -46,6 +46,11 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - ServerSideApply=true # CRITICAL FIX: Bypasses the 256kb CRD size limit
+      - ServerSideApply=true
+      - Replace=true
