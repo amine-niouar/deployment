@@ -1,22 +1,22 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: nginx-demo-ingress
-  namespace: default
-  annotations:
-    # Tells AWS to make this a public-facing load balancer
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    # Routes traffic directly to the Pod IPs (most efficient)
-    alb.ingress.kubernetes.io/target-type: ip
-spec:
-  ingressClassName: alb
-  rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: nginx-demo-svc # Matches your exact Service name
-                port:
-                  number: 80
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: nginx-demo-ingress
+#   namespace: default
+#   annotations:
+#     # Tells AWS to make this a public-facing load balancer
+#     alb.ingress.kubernetes.io/scheme: internet-facing
+#     # Routes traffic directly to the Pod IPs (most efficient)
+#     alb.ingress.kubernetes.io/target-type: ip
+# spec:
+#   ingressClassName: alb
+#   rules:
+#     - http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: nginx-demo-svc # Matches your exact Service name
+#                 port:
+#                   number: 80
