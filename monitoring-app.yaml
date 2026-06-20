@@ -11,12 +11,22 @@ spec:
     targetRevision: 61.3.0
     helm:
       values: |
+        prometheusOperator:
+          admissionWebhooks:
+            enabled: false
+          tls:
+            enabled: false
         prometheus:
           prometheusSpec:
             retention: 2d
             retentionSize: 2GiB
             storageSpec:
-              emptyDir: {}
+              volumeClaimTemplate:
+                spec:
+                  accessModes: ["ReadWriteOnce"]
+                  resources:
+                    requests:
+                      storage: 10Gi
             resources:
               requests:
                 cpu: 100m
@@ -39,6 +49,9 @@ spec:
               requests:
                 cpu: 50m
                 memory: 64Mi
+              limits:
+                cpu: 200m
+                memory: 256Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -46,11 +59,6 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
-      - Replace=true
