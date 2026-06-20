@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: aniouar/myapp:98e8f11716f7f997d7945af31bf7bdf1665818c3
+        image: aniouar/myapp:cb41e0c83dfbadeb66bfef68e47381766fcf8d5b
         ports:
         - containerPort: 80
 ---
